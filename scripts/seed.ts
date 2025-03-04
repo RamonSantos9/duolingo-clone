@@ -97,34 +97,93 @@ const main = async () => {
         lessonId: 1, // Nouns
         type: "SELECT",
         order: 1,
-        question: 'Which one of these is the "the man"?',
+        question: 'Qual destas imagens é "café"?',
+      },
+      {
+        id: 2,
+        lessonId: 1, // Nouns
+        type: "SELECT",
+        order: 2,
+        question: 'Qual destas imagens é "chá"?',
+      },
+      {
+        id: 3,
+        lessonId: 1, // Nouns
+        type: "SELECT",
+        order: 3,
+        question: 'Qual destas imagens é "Aguá"?',
       },
     ]);
 
     await db.insert(schema.challengeOptions).values([
       {
-        id: 1,
         challengeId: 1, // challenge 1
-        imageSrc: "/man.svg",
+        imageSrc: "tea.svg",
+        correct: false,
+        text: "tea",
+        audioSrc: "tea.mp3",
+      },
+      {
+        challengeId: 1,
+        imageSrc: "coffee.svg",
         correct: true,
-        text: "The man",
-        audioSrc: "eua_man.mp3",
+        text: "coffee",
+        audioSrc: "coffee.mp3",
       },
       {
-        id: 2,
         challengeId: 1,
-        imageSrc: "/woman.svg",
+        imageSrc: "water.svg",
         correct: false,
-        text: "The woman",
-        audioSrc: "eua_woman.mp3",
+        text: "water",
+        audioSrc: "water.mp3",
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 2, // challenge 2
+        imageSrc: "coffee.svg",
+        correct: false,
+        text: "coffee",
+        audioSrc: "coffe.mp3",
       },
       {
-        id: 3,
-        challengeId: 1,
-        imageSrc: "/robot.svg",
+        challengeId: 2,
+        imageSrc: "water.svg",
         correct: false,
-        text: "The robot",
-        audioSrc: "eua.robot.mp3",
+        text: "water",
+        audioSrc: "water.mp3",
+      },
+      {
+        challengeId: 2,
+        imageSrc: "tea.svg",
+        correct: true,
+        text: "tea",
+        audioSrc: "tea.mp3",
+      },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 3, // challenge 3
+        imageSrc: "coffee.svg",
+        correct: false,
+        text: "coffee",
+        audioSrc: "coffee.mp3",
+      },
+      {
+        challengeId: 3,
+        imageSrc: "water.svg",
+        correct: true,
+        text: "water",
+        audioSrc: "water.mp3",
+      },
+      {
+        challengeId: 3,
+        imageSrc: "tea.svg",
+        correct: false,
+        text: "tea",
+        audioSrc: "tea.mp3",
       },
     ]);
 
