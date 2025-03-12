@@ -19,6 +19,11 @@ export const MobileFooter = () => {
         <Image src="/icons/ligas.svg" alt="Ligas" width={40} height={40} />
       </Link>
 
+      {/* Link para a página Missões */}
+      <Link href="/quests" className="flex flex-col items-center">
+        <Image src="/icons/missoes.svg" alt="Missões" width={40} height={40} />
+      </Link>
+
       {/* Link para a página Sons */}
       <Link href="/characters" className="flex flex-col items-center">
         <Image src="/icons/sons.svg" alt="Sons" width={40} height={40} />

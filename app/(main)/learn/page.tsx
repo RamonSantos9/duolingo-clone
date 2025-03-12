@@ -5,6 +5,7 @@ import {
   getLessonPercentage,
   getUnits,
   getUserProgress,
+  getUserSubscription,
 } from "@/db/queries";
 
 import { FeedWrapper } from "@/components/feed-wrapper";
@@ -15,22 +16,27 @@ import { Unit } from "./unit";
 import { lessons, units as unitsSchema } from "@/db/schema";
 
 const LearnPage = async () => {
-  // Inicia as queries para buscar os dados necessários de forma paralela
   const userProgressData = getUserProgress();
   const courseProgressData = getCourseProgress();
   const lessonPercentageData = getLessonPercentage();
   const unitsData = getUnits();
+  const userSubscriptionData = getUserSubscription();
 
   // Aguarda todas as promises serem resolvidas
-  const [userProgress, units, courseProgress, lessonPercentage] =
-    await Promise.all([
-      userProgressData,
-      unitsData,
-      courseProgressData,
-      lessonPercentageData,
-    ]);
+  const [
+    userProgress,
+    units,
+    courseProgress,
+    lessonPercentage,
+    userSubscription,
+  ] = await Promise.all([
+    userProgressData,
+    unitsData,
+    courseProgressData,
+    lessonPercentageData,
+    userSubscriptionData,
+  ]);
 
-  // Redireciona para "/courses" se não houver curso ativo ou progresso do usuário
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
   }
@@ -40,7 +46,7 @@ const LearnPage = async () => {
 
   return (
     // Em desktop, a ordem é invertida (feed à esquerda e UserProgress à direita)
-    <div className="flex flex-col lg:flex-row-reverse px-4 pr-8">
+    <div className="flex flex-col lg:flex-row-reverse px-4">
       {/*
         Mobile: UserProgress fixado no topo.
         Em telas maiores (lg), esse componente é oculto.
@@ -51,7 +57,7 @@ const LearnPage = async () => {
           hearts={userProgress.hearts}
           points={userProgress.points}
           gems={userProgress.gems}
-          hasActiveSubscription={false}
+          hasActiveSubscription={!!userSubscription?.isActive}
         />
       </div>
 

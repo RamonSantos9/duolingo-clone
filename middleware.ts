@@ -2,7 +2,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Define as rotas públicas
-const isPublicRoute = createRouteMatcher(["/"]);
+const isPublicRoute = createRouteMatcher(["/", "/api/webhooks/stripe"]);
 
 export default clerkMiddleware(async (auth, req) => {
   // Se a rota não for pública, exige autenticação

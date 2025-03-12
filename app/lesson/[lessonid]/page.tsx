@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { getLesson, getUserProgress } from "@/db/queries";
+import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
+
 import { Quiz } from "../quiz";
 
 type Props = {
@@ -9,13 +10,15 @@ type Props = {
   };
 };
 
-const LessonIdpage = async ({ params }: Props) => {
+const LessonIdPage = async ({ params }: Props) => {
   const lessonData = getLesson(params.lessonId);
   const userProgressData = getUserProgress();
+  const userSubscriptionData = getUserSubscription();
 
-  const [lesson, userProgress] = await Promise.all([
+  const [lesson, userProgress, userSubscription] = await Promise.all([
     lessonData,
     userProgressData,
+    userSubscriptionData,
   ]);
 
   if (!lesson || !userProgress) {
@@ -23,9 +26,11 @@ const LessonIdpage = async ({ params }: Props) => {
   }
 
   const initialPercentage =
-    (lesson.challenges.filter((challenge) => challenge.completed).length /
-      lesson.challenges.length) *
-    100;
+    lesson.challenges.length > 0
+      ? (lesson.challenges.filter((challenge) => challenge.completed).length /
+          lesson.challenges.length) *
+        100
+      : 0;
 
   return (
     <div>
@@ -34,10 +39,10 @@ const LessonIdpage = async ({ params }: Props) => {
         initialLessonChallenges={lesson.challenges}
         initialHearts={userProgress.hearts}
         initialPercentage={initialPercentage}
-        userSubscription={null} //TODO: Add user subscription
+        userSubscription={userSubscription}
       />
     </div>
   );
 };
 
-export default LessonIdpage;
+export default LessonIdPage;

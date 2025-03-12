@@ -20,7 +20,6 @@ export const UserProgress = ({
   hasActiveSubscription,
 }: Props) => {
   return (
-    // Container para alinhar os itens. Em todas as telas, os itens ocupam toda a largura.
     <div className="flex items-center justify-between w-full">
       {/* Bandeira: link para a página de cursos */}
       <Link href="/courses">
