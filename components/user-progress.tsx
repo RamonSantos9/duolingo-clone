@@ -76,7 +76,7 @@ export const UserProgress = ({
             className="lg:w-[30px] lg:h-[30px]"
           />
           {hasActiveSubscription ? (
-            // Ajuste o tamanho do ícone infinito também para desktop, se necessário
+            //  ícone infinito também para desktop, se necessário
             <InfinityIcon className="h-4 w-4 lg:h-3 lg:w-3 stroke-[3]" />
           ) : (
             hearts

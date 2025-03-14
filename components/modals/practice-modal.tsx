@@ -33,7 +33,7 @@ export const PracticeModal = () => {
             <Image src="/heart.svg" alt="Heart" height={80} width={80} />
           </div>
           <DialogTitle className="text-center font-bold text-2xl">
-            Practice lesson
+            lições práticas
           </DialogTitle>
           <DialogDescription className="text-center text-base">
             Use lições práticas para recuperar corações e pontos. Você não pode

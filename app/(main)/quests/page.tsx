@@ -6,6 +6,7 @@ import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
 import { Progress } from "@/components/ui/progress";
+import { Promo } from "@/app/components/promo";
 
 const quests = [
   {
@@ -64,6 +65,7 @@ const QuestsPage = async () => {
             gems={userProgress.gems}
             hasActiveSubscription={isPro}
           />
+          {!isPro && <Promo />}
         </StickyWrapper>
       </div>
       <FeedWrapper>
@@ -77,15 +79,13 @@ const QuestsPage = async () => {
           </p>
         </div>
         <ul className="w-full">
-          {quests.map((quests) => {
-            const progress = (userProgress.points / quests.value) * 100;
-
-            console.log({ progress, value: quests.value });
+          {quests.map((quest) => {
+            const progress = (userProgress.points / quest.value) * 100;
 
             return (
               <div
                 className="flex items-center w-full p-4 gap-x-4 border-t-2"
-                key={quests.title}
+                key={quest.title}
               >
                 <Image
                   src="icons/points.svg"
@@ -95,7 +95,7 @@ const QuestsPage = async () => {
                 />
                 <div className="flex flex-col gap-y-2 w-full">
                   <p className="text-neutral-700 text-xl font-bold">
-                    {quests.title}
+                    {quest.title}
                   </p>
                   <Progress value={progress} className="h-3" />
                 </div>

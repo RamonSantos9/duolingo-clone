@@ -12,7 +12,7 @@ import "./globals.css";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Duolingo Da Cracolandia",
+  title: "Duolingo-Clone",
   description: "",
 };
 

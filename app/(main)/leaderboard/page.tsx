@@ -11,6 +11,8 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Promo } from "@/app/components/promo";
+import { Quests } from "@/app/components/quests";
 
 const LeaderboardPage = async () => {
   const userProgressData = getUserProgress();
@@ -48,6 +50,8 @@ const LeaderboardPage = async () => {
             gems={userProgress.gems}
             hasActiveSubscription={isPro}
           />
+          {!isPro && <Promo />}
+          <Quests points={userProgress.points} />
         </StickyWrapper>
       </div>
       <FeedWrapper>

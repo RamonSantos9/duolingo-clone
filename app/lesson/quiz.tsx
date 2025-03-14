@@ -169,7 +169,7 @@ export const Quiz = ({
           width={width}
           height={height}
         />
-        <div className="flex flex-col gap-y-4 lg:gap-y-8 mx-auto text-center items-center justify-center h-full">
+        <div className="flex flex-col gap-y-4 pt-10 lg:gap-y-8 mx-auto text-center items-center justify-center h-full">
           <Image
             src="/mascot-sad.svg"
             alt="Finish"
@@ -184,10 +184,10 @@ export const Quiz = ({
             height={50}
             width={50}
           />
-          <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
+          <h1 className="text-2xl lg:text-4xl font-bold text-neutral-700">
             Bom Trabalho! <br /> Você terminou o desafio.
           </h1>
-          <div className="flex items-center gap-x-4 w-full">
+          <div className="w-full flex justify-center items-center gap-8 pt-20">
             <ResultCard variant="points" value={lessonChallenges.length * 10} />
             <ResultCard variant="hearts" value={hearts} />
           </div>
@@ -197,7 +197,6 @@ export const Quiz = ({
           status="completed"
           onCheck={() => router.push("/learn")}
         />
-        {/* Elementos de áudio renderizados de forma oculta */}
         <div style={{ display: "none" }}>
           {finishAudio}
           {correctAudio}

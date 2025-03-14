@@ -31,7 +31,7 @@ export const ExitModal = () => {
       <DialogContent className="max-w-md">
         <DialogHeader>
           <div className="flex items-center justify-center w-full mb-5">
-            <Image src="/mascot.svg" alt="Mascot" height={80} width={80} />
+            <Image src="/mascot-sad.svg" alt="Mascot" height={80} width={80} />
           </div>
           <DialogTitle className="text-center font-bold text-2xl">
             Espere não vá!
@@ -48,10 +48,10 @@ export const ExitModal = () => {
               size="lg"
               onClick={close}
             >
-              Continue aprendendo
+              Continuar aprendendo!
             </Button>
             <Button
-              className="w-full"
+              className="w-full font-bold"
               variant="dangerOutline"
               size="lg"
               onClick={() => {

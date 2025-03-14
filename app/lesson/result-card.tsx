@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -10,36 +9,36 @@ type Props = {
 export const ResultCard = ({ value, variant }: Props) => {
   const imageSrc =
     variant === "hearts" ? "icons/heart.svg" : "icons/points.svg";
+  const headerText = variant === "hearts" ? "Corações restantes" : "Total XP";
+  const bgColorClass =
+    variant === "hearts"
+      ? "bg-rose-500 border-rose-500"
+      : "bg-orange-400 border-orange-400";
+  const textColorClass =
+    variant === "hearts" ? "text-rose-500" : "text-orange-400";
+
   return (
-    <div
-      className={cn(
-        "rounded-2xl border-2 w-full",
-        variant === "points" && "bg-orange-400 border-orange-400",
-        variant === "hearts" && "bg-rose-500 border-rose-500"
-      )}
-    >
+    <div className={cn("rounded-3xl border-8 w-60 h-56", bgColorClass)}>
       <div
         className={cn(
-          "p-1.5 text-white rounded-t-xl font-bold text-center uppercase text-xs",
-          variant === "hearts" && "bg-rose-500",
-          variant === "points" && "bg-orange-400"
+          "p-2 text-white rounded-t-xl font-bold text-center uppercase text-lg",
+          bgColorClass
         )}
       >
-        {variant === "hearts" ? "Hearts Left" : "Total XP"}
+        {headerText}
       </div>
       <div
         className={cn(
-          "rounded-2xl bg-white items-center flex justify-center p-6 font-bold text-lg",
-          variant === "hearts" && "text-rose-500",
-          variant === "points" && "text-orange-400"
+          "bg-white flex items-center justify-center p-8 font-bold text-3xl",
+          textColorClass
         )}
       >
         <Image
-          alt="Icon"
+          alt={`${variant} icon`}
           src={imageSrc}
-          width={30}
-          height={30}
-          className="mr-1.5"
+          width={80}
+          height={80}
+          className="mr-3"
         />
         {value}
       </div>

@@ -6,6 +6,8 @@ import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { Items } from "./items";
+import { Promo } from "@/app/components/promo";
+import { Quests } from "@/app/components/quests";
 
 const shopPage = async () => {
   const userProgressData = getUserProgress();
@@ -41,6 +43,8 @@ const shopPage = async () => {
             gems={userProgress.gems}
             hasActiveSubscription={false}
           />
+          {!isPro && <Promo />}
+          <Quests points={userProgress.points} />
         </StickyWrapper>
       </div>
       <FeedWrapper>
