@@ -19,7 +19,7 @@ import { ChallengeList } from "./challenge/list";
 import { challengeCreate } from "./challenge/create";
 import { ChallengeEdit } from "./challenge/edit";
 
-import { challengeOptionsList } from "./challengeOption/list";
+import { challengeOptionList } from "./challengeOption/list";
 import { challengeOptionCreate } from "./challengeOption/create";
 import { challengeOptionEdit } from "./challengeOption/edit";
 
@@ -58,7 +58,7 @@ const App = () => {
       />
       <Resource
         name="challengeOptions"
-        list={challengeOptionsList}
+        list={challengeOptionList}
         create={challengeOptionCreate}
         edit={challengeOptionEdit}
         recordRepresentation="text"
