@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Duolingo Clone
 
-## Getting Started
+![Pré-visualização do Site](public/Thumbnail-duolingo.png)
 
-First, run the development server:
+Duolingo Clone é um projeto desenvolvido para fins de estudo e experimentação, inspirado na popular plataforma de aprendizado de idiomas. Ele implementa funcionalidades de gamificação, lições interativas e desafios, demonstrando conceitos modernos de desenvolvimento web.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Descrição
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Este projeto foi criado para explorar e aprender técnicas de desenvolvimento utilizando Next.js, React e outras tecnologias modernas. O Duolingo Clone simula uma plataforma de aprendizado com lições, desafios e acompanhamento de progresso do usuário. Embora não seja uma réplica exata do Duolingo, o projeto serve como base para estudos e experimentações, permitindo que desenvolvedores aprendam sobre Server-Side Rendering (SSR), APIs, integração com bancos de dados e muito mais.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demonstração
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Experimente a versão ao vivo: [duolingo-clone-mauve.vercel.app](https://duolingo-clone-mauve.vercel.app)
 
-## Learn More
+## Tecnologias Utilizadas
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js:** Framework React para construção de aplicações web escaláveis e performáticas.
+- **React:** Biblioteca para criação de interfaces de usuário.
+- **TypeScript:** Superset do JavaScript com tipagem estática, que torna o desenvolvimento mais robusto.
+- **Tailwind CSS:** Framework utilitário para estilização rápida e customizada.
+- **Drizzle ORM:** Biblioteca para mapeamento objeto-relacional (ORM) com suporte para bancos de dados PostgreSQL.
+- **Neon:** Serviço de banco de dados PostgreSQL serverless.
+- **ESLint & Prettier:** Ferramentas para manter a padronização e qualidade do código.
+- **Vercel:** Plataforma para deploy de aplicações Next.js com integração simplificada.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Lições e Desafios Interativos:** Aprenda e pratique através de lições dinâmicas e desafios que simulam o aprendizado de um idioma.
+- **Gamificação:** Acompanhe seu progresso com pontos, corações e outros indicadores de desempenho.
+- **Design Responsivo:** Desenvolvido com uma abordagem mobile-first, garantindo uma ótima experiência em dispositivos móveis.
+- **API e SSR:** Implementação de rotas de API e renderização server-side para demonstrar conceitos avançados do Next.js.
+- **Integração com Banco de Dados:** Uso do Drizzle ORM e Neon para gerenciamento e consulta de dados.
 
-## Deploy on Vercel
+## Instalação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Siga os passos abaixo para rodar o projeto localmente:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  **Clone o repositório:**
+    Clone o repositório:
+
+    ```bash
+    git clone https://github.com/RamonSantos9/duolingo-clone.git
+    Entre na pasta do projeto:
+
+    ```
+
+2.  **Entre na pasta do projeto:**
+
+    ```bash
+    cd duolingo-clone
+
+    ```
+
+3.  **Configure as variáveis de ambiente**
+
+    > Crie um arquivo .env na raiz do projeto e adicione a seguinte linha:
+
+    ```bash
+    DATABASE_URL="postgresql://<usuário>:<senha>@<host>.neon.tech/<nome_do_banco>?sslmode=require"
+    STRIPE_WEBHOOK_SECRET="sua_stripe_webhook_secret"
+    Substitua <usuário>, <senha>, <host> e <nome_do_banco> com as informações do seu banco de dados Neon.
+
+    ```
+
+4.  **Instale as dependências**
+
+        ```bash
+        npm install
+
+5.  **Inicie o servidor de desenvolvimento**
+
+    ```bash
+    npm run dev
+
+    ```
+
+6.  **Acesse o projeto: Abra seu navegador e digite**
+
+    http://localhost:3000
+
+**Observações Importantes:**
+Conecte seu repositório GitHub ao Vercel.
+Configure as variáveis de ambiente no painel da Vercel.
+O Vercel realizará o deploy automático a cada push para a branch configurada (por exemplo, main ou master).
+Considerações
+Projeto para Estudos:
+Este Duolingo Clone foi desenvolvido exclusivamente para estudos e experimentação. Ele não é um produto comercial e não deve ser utilizado em produção sem as devidas adaptações.
+
+- **Segurança:**
+  Não compartilhe informações sensíveis publicamente. Certifique-se de que o arquivo .env.local esteja listado no .gitignore para evitar o versionamento de credenciais.
+
+- **Contribuições:**
+  Sinta-se à vontade para abrir issues ou enviar pull requests caso queira contribuir ou sugerir melhorias para o projeto.
