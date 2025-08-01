@@ -26,31 +26,31 @@ export const Sidebar = ({ className }: Props) => {
         <SidebarItem
           label="Aprender"
           href="/learn"
-          iconSrc="icons/aprender.svg"
+          iconSrc="/icons/aprender.svg"
           size="lg"
         />
         <SidebarItem
           label="Ligas"
           href="/leaderboard"
-          iconSrc="icons/ligas.svg"
+          iconSrc="/icons/ligas.svg"
           size="lg"
         />
         <SidebarItem
           label="Missões"
           href="/quests"
-          iconSrc="icons/missoes.svg"
+          iconSrc="/icons/missoes.svg"
           size="lg"
         />
         <SidebarItem
           label="Sons"
           href="/characters"
-          iconSrc="icons/sons.svg"
+          iconSrc="/icons/sons.svg"
           size="lg"
         />
         <SidebarItem
           label="Shop"
           href="/shop"
-          iconSrc="icons/loja.svg"
+          iconSrc="/icons/loja.svg"
           size="lg"
         />
       </div>

@@ -41,7 +41,7 @@ const shopPage = async () => {
             hearts={userProgress.hearts}
             points={userProgress.points}
             gems={userProgress.gems}
-            hasActiveSubscription={false}
+            hasActiveSubscription={!!userSubscription?.isActive}
           />
           {!isPro && <Promo />}
           <Quests points={userProgress.points} />
@@ -49,7 +49,7 @@ const shopPage = async () => {
       </div>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
-          <Image src="icons/loja.svg" alt="loja" height={90} width={90} />
+          <Image src="/icons/loja.svg" alt="loja" height={90} width={90} />
           <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
             Loja
           </h1>

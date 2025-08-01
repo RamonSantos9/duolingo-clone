@@ -22,6 +22,7 @@ import { ResultCard } from "./result-card";
 import { QuestionBubble } from "./question-bubble";
 import { useHeartsModal } from "@/store/use-hearts-modal";
 import { usePracticeModal } from "@/store/use-practice-modal";
+import { NextLessons } from "./next-lessons";
 
 type Props = {
   initialPercentage: number;
@@ -158,6 +159,12 @@ export const Quiz = ({
     }
   };
 
+  // Função para redirecionar para a próxima lição ou voltar para /learn
+  const onLessonComplete = () => {
+    // Redireciona para a página de aprendizado para mostrar o progresso
+    router.push("/learn");
+  };
+
   // Se não houver mais desafios, exibe a tela de conclusão
   if (!challenge) {
     return (
@@ -169,34 +176,54 @@ export const Quiz = ({
           width={width}
           height={height}
         />
-        <div className="flex flex-col gap-y-4 pt-10 lg:gap-y-8 mx-auto text-center items-center justify-center h-full">
-          <Image
-            src="/mascot-sad.svg"
-            alt="Finish"
-            className="hidden lg:block"
-            height={100}
-            width={100}
-          />
-          <Image
-            src="/mascot-sad.svg"
-            alt="Finish"
-            className="block lg:hidden"
-            height={50}
-            width={50}
-          />
-          <h1 className="text-2xl lg:text-4xl font-bold text-neutral-700">
-            Bom Trabalho! <br /> Você terminou o desafio.
-          </h1>
-          <div className="w-full flex justify-center items-center gap-8 pt-20">
-            <ResultCard variant="points" value={lessonChallenges.length * 10} />
-            <ResultCard variant="hearts" value={hearts} />
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-1 flex flex-col items-center px-6 py-8">
+            {/* Seção de parabéns */}
+            <div className="text-center mb-8">
+              <Image
+                src="/mascot.svg"
+                alt="Parabéns!"
+                className="hidden lg:block mx-auto mb-6"
+                height={120}
+                width={120}
+              />
+              <Image
+                src="/mascot.svg"
+                alt="Parabéns!"
+                className="block lg:hidden mx-auto mb-4"
+                height={80}
+                width={80}
+              />
+              <h1 className="text-2xl lg:text-4xl font-bold text-neutral-700 mb-2">
+                Parabéns!
+              </h1>
+              <p className="text-lg lg:text-xl text-neutral-600">
+                Você completou a lição com sucesso!
+              </p>
+            </div>
+
+            {/* Cards de resultado */}
+            <div className="w-full max-w-4xl flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-8 mb-12">
+              <ResultCard
+                variant="points"
+                value={lessonChallenges.length * 10}
+              />
+              <ResultCard variant="hearts" value={hearts} />
+            </div>
+
+            {/* Seção das próximas lições */}
+            <div className="w-full max-w-6xl">
+              <NextLessons currentLessonId={lessonId} />
+            </div>
           </div>
+
+          <Footer
+            lessonId={lessonId}
+            status="completed"
+            onCheck={onLessonComplete}
+          />
         </div>
-        <Footer
-          lessonId={lessonId}
-          status="completed"
-          onCheck={() => router.push("/learn")}
-        />
+
         <div style={{ display: "none" }}>
           {finishAudio}
           {correctAudio}

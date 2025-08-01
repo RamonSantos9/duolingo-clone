@@ -70,7 +70,12 @@ const QuestsPage = async () => {
       </div>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
-          <Image src="icons/missoes.svg" alt="Missões" height={90} width={90} />
+          <Image
+            src="/icons/missoes.svg"
+            alt="Missões"
+            height={90}
+            width={90}
+          />
           <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
             Missões
           </h1>
@@ -88,7 +93,7 @@ const QuestsPage = async () => {
                 key={quest.title}
               >
                 <Image
-                  src="icons/points.svg"
+                  src="/icons/points.svg"
                   alt="points"
                   width={60}
                   height={60}

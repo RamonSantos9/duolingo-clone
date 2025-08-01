@@ -27,14 +27,14 @@ export const Header = ({
       <Progress value={percentage} />
       <div className="text-rose-500 flex items-center font-bold">
         <Image
-          src="icons/heart.svg"
+          src="/icons/heart.svg"
           height={28}
           width={28}
           alt="Heart"
           className="mr-2"
         />
         {hasActiveSubscription ? (
-          <InfinityIcon className="h-6 w-6 stroke-[3] shrink-0" />
+          <InfinityIcon className="h-6 w-6 stroke-[3] shrink-0 text-rose-500" />
         ) : (
           hearts
         )}

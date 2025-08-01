@@ -144,4 +144,5 @@ export const userSubscription = pgTable("user_subscription", {
   stripeSubscriptionId: text("stripe_subscription_id").notNull().unique(),
   stripePriceId: text("stripe_price_id").notNull(),
   stripeCurrentPeriodEnd: timestamp("stripe_current_period_end").notNull(),
+  isActive: boolean("is_active").notNull().default(true),
 });

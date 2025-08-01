@@ -41,7 +41,7 @@ export const UserProgress = ({
       <Link href="/shop">
         <Button variant="ghost" className="text-orange-500">
           <Image
-            src="icons/points.svg"
+            src="/icons/points.svg"
             alt="Points"
             width={40}
             height={40}
@@ -55,7 +55,7 @@ export const UserProgress = ({
       <Link href="/shop">
         <Button variant="ghost" className="text-sky-500">
           <Image
-            src="icons/gems.svg"
+            src="/icons/gems.svg"
             alt="gems"
             width={30}
             height={30}
@@ -69,7 +69,7 @@ export const UserProgress = ({
       <Link href="/shop">
         <Button variant="ghost" className="text-rose-500">
           <Image
-            src="icons/heart.svg"
+            src="/icons/heart.svg"
             alt="Hearts"
             width={40}
             height={40}
@@ -77,7 +77,7 @@ export const UserProgress = ({
           />
           {hasActiveSubscription ? (
             //  ícone infinito também para desktop, se necessário
-            <InfinityIcon className="h-4 w-4 lg:h-3 lg:w-3 stroke-[3]" />
+            <InfinityIcon className="h-4 w-4 lg:h-3 lg:w-3 stroke-[3] text-rose-500" />
           ) : (
             hearts
           )}

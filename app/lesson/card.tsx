@@ -59,7 +59,7 @@ export const Card = ({
       {audio}
       {imageSrc && (
         <div className={cn("relative aspect-square mb-4 w-full")}>
-          <Image src={imageSrc} fill alt={text} />
+          <Image src={imageSrc.startsWith('/') ? imageSrc : `/${imageSrc}`} fill alt={text} />
         </div>
       )}
       <div

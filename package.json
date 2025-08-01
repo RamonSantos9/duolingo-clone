@@ -11,7 +11,17 @@
     "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts",
     "db:prod": "tsx ./scripts/prod.ts",
-    "db:reset": "tsx ./scripts/reset.ts"
+    "db:reset": "tsx ./scripts/reset.ts",
+    "db:migrate-nextauth": "tsx ./scripts/migrate-to-nextauth.ts",
+    "db:setup-nextauth": "tsx ./scripts/setup-nextauth.ts",
+    "db:check-subscription": "tsx ./scripts/check-subscription-status.ts",
+    "db:fix-subscription": "tsx ./scripts/fix-subscription.ts",
+    "db:update-subscription": "tsx ./scripts/update-subscription-active.ts",
+    "db:fix-challenges": "tsx ./scripts/fix-challenges.ts",
+    "db:fix-portuguese": "tsx ./scripts/fix-portuguese-answers.ts",
+    "db:fix-answers": "tsx ./scripts/fix-incorrect-answers.ts",
+    "db:add-missing": "tsx ./scripts/fix-missing-answers.ts",
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.0",

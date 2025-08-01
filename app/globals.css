@@ -119,3 +119,24 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+/* Melhorias de scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transições suaves para elementos interativos */
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Efeitos de hover melhorados */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
