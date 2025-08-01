@@ -1,10 +1,16 @@
-import { stripe } from "@/lib/stripe";
+import { stripe, isStripeConfigured } from "@/lib/stripe";
 import db from "@/db/drizzle";
 import { userSubscription } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 async function fixCustomerId() {
   try {
+    // Verifica se o Stripe está configurado
+    if (!isStripeConfigured()) {
+      console.error("❌ Stripe não está configurado. Configure a variável STRIPE_SECRET_KEY.");
+      return;
+    }
+
     console.log("🔧 Corrigindo stripeCustomerId...");
 
     // Buscar a assinatura existente
@@ -21,7 +27,7 @@ async function fixCustomerId() {
     console.log("📋 Assinatura encontrada:", subscription);
 
     // Criar um cliente real no Stripe
-    const customer = await stripe.customers.create({
+    const customer = await stripe!.customers.create({
       email: "ramonfishh@gmail.com", // Seu email
       name: "Ramon", // Seu nome
       metadata: {

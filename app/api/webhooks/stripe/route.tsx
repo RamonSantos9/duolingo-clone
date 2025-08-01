@@ -1,19 +1,24 @@
 import db from "@/db/drizzle";
 import { userSubscription } from "@/db/schema";
-import { stripe } from "@/lib/stripe";
+import { stripe, isStripeConfigured } from "@/lib/stripe";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function POST(req: Request) {
+  // Verifica se o Stripe está configurado
+  if (!isStripeConfigured()) {
+    return new NextResponse("Stripe não está configurado", { status: 500 });
+  }
+
   const body = await req.text();
   const signature = (await headers()).get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = stripe!.webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
@@ -30,7 +35,7 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
 
   if (event.type === "checkout.session.completed") {
-    const subscription = await stripe.subscriptions.retrieve(
+    const subscription = await stripe!.subscriptions.retrieve(
       session.subscription as string
     );
 
@@ -48,7 +53,7 @@ export async function POST(req: Request) {
   }
 
   if (event.type === "invoice.payment_succeeded") {
-    const subscription = await stripe.subscriptions.retrieve(
+    const subscription = await stripe!.subscriptions.retrieve(
       session.subscription as string
     );
 

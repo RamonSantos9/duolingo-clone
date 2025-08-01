@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { stripe, isStripeConfigured } from "@/lib/stripe";
 import db from "@/db/drizzle";
 import { userSubscription } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
   try {
+    // Verifica se o Stripe está configurado
+    if (!isStripeConfigured()) {
+      return NextResponse.json(
+        { error: "Stripe não está configurado. Configure a variável STRIPE_SECRET_KEY." },
+        { status: 500 }
+      );
+    }
+
     const { userId } = await req.json();
 
     if (!userId) {
@@ -41,7 +49,7 @@ export async function POST(req: Request) {
     ) {
       try {
         // Tentar buscar o cliente no Stripe para verificar se existe
-        customer = await stripe.customers.retrieve(
+        customer = await stripe!.customers.retrieve(
           subscription.stripeCustomerId
         );
         console.log("✅ Customer ID válido:", customer.id);
@@ -57,7 +65,7 @@ export async function POST(req: Request) {
     ) {
       try {
         // Tentar buscar o preço no Stripe para verificar se existe
-        price = await stripe.prices.retrieve(subscription.stripePriceId);
+        price = await stripe!.prices.retrieve(subscription.stripePriceId);
         console.log("✅ Price ID válido:", price.id);
       } catch {
         console.log("📋 Price ID não existe no Stripe, criando novo...");
@@ -76,7 +84,7 @@ export async function POST(req: Request) {
 
     // Criar cliente se não existir
     if (!customer) {
-      customer = await stripe.customers.create({
+      customer = await stripe!.customers.create({
         email: "ramonfishh@gmail.com", // Seu email
         name: "Ramon", // Seu nome
         metadata: {
@@ -88,14 +96,14 @@ export async function POST(req: Request) {
 
     // Criar produto e preço se não existirem
     if (!price) {
-      const product = await stripe.products.create({
+      const product = await stripe!.products.create({
         name: "Duolingo Pro",
         description: "Corações ilimitado",
       });
 
       console.log("✅ Produto criado no Stripe:", product.id);
 
-      price = await stripe.prices.create({
+      price = await stripe!.prices.create({
         product: product.id,
         unit_amount: 2000, // R$ 20,00
         currency: "brl",

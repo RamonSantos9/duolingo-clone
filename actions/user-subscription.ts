@@ -2,7 +2,7 @@
 
 import { auth, currentUser } from "@clerk/nextjs/server";
 
-import { stripe } from "@/lib/stripe";
+import { stripe, isStripeConfigured } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { getUserSubscription } from "@/db/queries";
 
@@ -10,6 +10,11 @@ const returnUrl = "http://localhost:3000/shop";
 
 export const createStripeUrl = async () => {
   try {
+    // Verifica se o Stripe está configurado
+    if (!isStripeConfigured()) {
+      throw new Error("Stripe não está configurado. Configure a variável STRIPE_SECRET_KEY.");
+    }
+
     const { userId } = await auth();
     const user = await currentUser();
 
@@ -25,7 +30,7 @@ export const createStripeUrl = async () => {
       userSubscription.stripeCustomerId.startsWith("cus_")
     ) {
       try {
-        const stripeSession = await stripe.billingPortal.sessions.create({
+        const stripeSession = await stripe!.billingPortal.sessions.create({
           customer: userSubscription.stripeCustomerId,
           return_url: returnUrl,
         });
@@ -38,7 +43,7 @@ export const createStripeUrl = async () => {
 
     // Se o usuário já tem uma assinatura ativa, criar uma sessão de checkout para gerenciar
     if (userSubscription?.isActive) {
-      const stripeSession = await stripe.checkout.sessions.create({
+      const stripeSession = await stripe!.checkout.sessions.create({
         mode: "subscription",
         payment_method_types: ["card"],
         customer: userSubscription.stripeCustomerId,
@@ -59,7 +64,7 @@ export const createStripeUrl = async () => {
     }
 
     // Se não tem assinatura, criar uma nova
-    const stripeSession = await stripe.checkout.sessions.create({
+    const stripeSession = await stripe!.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
       customer_email: user.emailAddresses[0].emailAddress,

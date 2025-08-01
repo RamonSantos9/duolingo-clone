@@ -343,14 +343,25 @@ Challenge {
 
 ### **Variáveis de Ambiente para Produção**
 
+#### **Obrigatórias:**
+
 ```env
 DATABASE_URL="postgresql://..."
-STRIPE_SECRET_KEY="sk_live_..."
-STRIPE_WEBHOOK_SECRET="whsec_..."
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_live_..."
 CLERK_SECRET_KEY="sk_live_..."
 NEXT_PUBLIC_APP_URL="https://seu-dominio.vercel.app"
 ```
+
+#### **Opcionais (para pagamentos):**
+
+```env
+STRIPE_SECRET_KEY="sk_live_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+```
+
+> **💡 Nota:** O projeto agora pode ser buildado mesmo sem as variáveis do Stripe configuradas. As funcionalidades de pagamento ficarão desabilitadas, mas o resto da aplicação funcionará normalmente.
+
+**📖 Guia detalhado:** Veja [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md) para instruções completas.
 
 ## 🤝 Contribuição
 
